@@ -39,6 +39,33 @@ select ename, sal, grade
 from emp, salgrade
 where sal >= losal and sal <= hisal;
 
+select ename, sal, grade
+from emp, salgrade
+where sal between losal and hisal;
+
+--- emp, dept, salgrade 3개의 테이블 join
+select ename, sal, grade, dname
+from emp, salgrade, dept
+where sal between losal and hisal;
+
+--- (4) self join
+select ename, mgr from emp;
+
+select employee.ename, employee.mgr, manager.ename
+from emp employee, emp manager 
+-- 별칭을 붙여서 다른 2개의 테이블인 것처럼 사용할 수 있다.
+where employee.mgr = manager.empno;
+
+--- (5) outer join
+select employee.ename, employee.mgr, manager.ename
+from emp employee, emp manager 
+-- 별칭을 붙여서 다른 2개의 테이블인 것처럼 사용할 수 있다.
+where employee.mgr = manager.empno(+);
+
+
+
+
+
 
 
 
