@@ -1,4 +1,21 @@
--- 조인
+/*
+select * from dept;
+select * from emp;
+*/
+
+-- [1] 'SCOTT'이 근무하는 부서명, 지역출력
+--	.원하는 정보가 두 개 이상의 테이블에 나뉘어져 있을 때 결과출력.
+
+select * from emp; -- 근무 부서
+select * from dept; -- 부서명과 지역정보
+
+select deptno from emp
+where ename = 'SCOTT';
+
+select dname, loc from dept
+where deptno = 20;
+
+-- [2] 조인
 
 --- (1) cross join
 select * from emp, dept; --- deptno 기준으로 정렬됨.
