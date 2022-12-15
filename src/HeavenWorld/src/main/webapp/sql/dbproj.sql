@@ -32,10 +32,12 @@ INSERT INTO SALGRADE VALUES (4,2001,3000);
 INSERT INTO SALGRADE VALUES (5,3001,9999); -- 5등급, LOW3001, HIGH9999
 COMMIT;
 
---- 연속형 변수를 범주화를 함.
+--- salary 연속형 변수를 grade로 범주화를 함.
 select * from SALGRADE;
 
-
+select ename, sal, grade
+from emp, salgrade
+where sal >= losal and sal <= hisal;
 
 
 
