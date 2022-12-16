@@ -207,6 +207,64 @@ where ename = 'SCOTT';
 select ename, dname
 from emp natural join dept;
 
+--- (3) Ansi outer join
+create table dept01(
+	deptno number(2),
+	dname varchar2(15)
+);
+
+insert into dept01 values(10, 'ACCOUNTING');
+insert into dept01 values(20, 'RESEARCH');
+
+create table dept02(
+	deptno number(2),
+	dname varchar2(15)
+);
+
+insert into dept02 values(10, 'ACCOUNTING');
+insert into dept02 values(30, 'SALES');
+
+select * from dept01;
+select * from dept02;
+
+---- 기존 오라클 접근 방법
+
+select * from dept01, dept02
+where dept01.deptno = dept02.deptno;
+
+select * from dept01, dept02
+where dept01.deptno = dept02.deptno(+); /* (+)는 반대쪽에 해줌 */
+
+select * from dept01, dept02
+where dept01.deptno(+) = dept02.deptno; /* (+)는 반대쪽에 해줌 */
+
+select * from dept01, dept02
+where dept01.deptno(+) = dept02.deptno(+); 
+/* ORA-01468: a predicate may reference only one outer-joined table */
+
+---- Ansi
+select *
+from dept01 left outer join dept02
+on dept01.deptno = dept02.deptno; 
+/* Ansi 표준은 무조건 on으로 표시하고 
+ * 더 구체적으로 하고 싶을 경우에 where를 더 붙여준다.*/
+
+select *
+from dept01 right outer join dept02
+on dept01.deptno = dept02.deptno; 
+
+select *
+from dept01 full outer join dept02
+on dept01.deptno = dept02.deptno; 
+
+
+
+
+
+
+
+
+
 
 
 
