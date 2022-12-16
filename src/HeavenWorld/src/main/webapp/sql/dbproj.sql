@@ -183,19 +183,29 @@ where employee.mgr = manager.empno(+);
 
 -- [3] ANSI Join(조인)
 --- (1) Ansi cross join
-
 select *
 from emp cross join dept; /* mariaDB, oracle 등 다 이용 가능하다.*/
 
 --- (2) Ansi inner join 
-/* */ 
+/* equi join 비슷하다. */
+select ename, dname 
+/* ename은 emp테이블, dname은 dept테이블*/
+from emp inner join dept
+on emp.deptno = dept.deptno;
 
+select ename, dname 
+/* ename은 emp테이블, dname은 dept테이블*/
+from emp inner join dept
+using (deptno); -- () 생략 불가능
 
+select ename, dname
+from emp inner join dept
+on emp.deptno = dept.deptno
+where ename = 'SCOTT';
 
-
-
-
-
+---- natural join
+select ename, dname
+from emp natural join dept;
 
 
 
